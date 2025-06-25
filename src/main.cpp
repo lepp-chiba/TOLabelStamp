@@ -59,7 +59,7 @@ int lastTime = 0;
 char EM[128];
 
 //Light Sensor
-uint16_t Brightness;
+// uint16_t Brightness;
 
 void UI_LABEL_MODE(void){
   
@@ -71,7 +71,7 @@ void UI_LABEL_MODE(void){
   M5.Lcd.printf("FilmNo:%03d\n",filmnumber);
   M5.Lcd.printf("Time  :%4d ms\n",exptime);
   M5.Lcd.printf("Size  :%d\n",fontsize);
-  M5.Lcd.printf("Brightness:%u\n",Brightness);
+  // M5.Lcd.printf("Brightness:%u\n",Brightness);
   M5.Lcd.printf("=> %s",LABEL.c_str());
 
   M5.Lcd.setCursor(30,210);
@@ -164,12 +164,6 @@ void UI_LABEL_EDIT_MODE(void){
   M5.Lcd.printf("EXIT");
   M5.Lcd.setCursor(120,210);
   M5.Lcd.printf("EDIT");
-  // M5.Lcd.setCursor(212,210);
-  // M5.Lcd.setTextSize(1); 
-  // M5.Lcd.printf("keyboard ESC");
-  // M5.Lcd.setCursor(220,220);
-  // M5.Lcd.printf(" to QUIT");
-  // M5.Lcd.setTextSize(3);
 }
 
 void UI_NUMBER_EDIT_MODE(void){
@@ -278,7 +272,7 @@ void testdrawchar(bool test) {
   display.cp437(true);    
   
   //check brightness
-  bool isBright = false;
+  // bool isBright = false;
 
   display.write(LABEL.c_str());
   flipDisplay();
@@ -286,37 +280,31 @@ void testdrawchar(bool test) {
   if(!test)M5.Speaker.beep();
   delay(exptime/2);
   //check if its labeled
-  Brightness = analogRead(36);
-  UI_LABEL_MODE();
-  if(Brightness < 4095){
-    isBright = true;
-  }
+  // Brightness = analogRead(36);
+  // UI_LABEL_MODE();
+  // if(Brightness < 4095){
+  //   isBright = true;
+  // }
   delay(exptime/2);
   display.clearDisplay();
   display.display();
   if(!test)M5.Speaker.mute();
 
   // if(isBright){
-  //   delay(500);
-  //   M5.Speaker.beep();
-  //   delay(100);
-  //   M5.Speaker.mute();
-  //   delay(100);
-  //   M5.Speaker.beep();
-  //   delay(100);
+  //   M5.Speaker.tone(3000, 100);
+  //   delay(60);
+  //   M5.Speaker.tone(1200, 120);
+  //   delay(80);
+  //   M5.Speaker.tone(3600, 120);
+  //   delay(80);
+  //   M5.Speaker.tone(1100, 120);
+  //   delay(80);
+  //   M5.Speaker.tone(3500, 200);
+  //   delay(150);
   //   M5.Speaker.mute();
   //   isBright = false;
   // }
   
-  //write to SD
-  // output_file = SD.open("/file.txt",FILE_APPEND);
-  // if(Brightness != 4095){
-  //   output_file.printf("Success: %s\n",LABEL.c_str());
-  // }
-  // else{
-  //   output_file.printf("Failed: %s\n",LABEL.c_str());
-  // }
-  // output_file.close();
 }
 
 //引数の次の文字を返す関数
@@ -386,13 +374,7 @@ void setup() {
   display.clearDisplay(); 
   display.display();
   //Light sensor
-  pinMode(26,INPUT);
-  //setup SDcard
-  // if (!SD.begin(4)){ //CS_pin4
-  //   Serial.println("Failed to initialize SDcard");
-  //   while (1);
-  // }
-  // Serial.println("Initializing SDcard complete!");
+  // pinMode(26,INPUT);
 }
 
 void loop() {
@@ -404,7 +386,7 @@ void loop() {
   BatteryLevel = M5.Power.getBatteryLevel();
 
   //Light Sensor
-  Brightness = analogRead(36);
+  // Brightness = analogRead(36);
 
   //ラベルモード
   if(mode == LABEL_MODE){
