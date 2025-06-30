@@ -2,7 +2,7 @@ This project is developed in the Platform.IO environment.
 The Hardware lists:
 ssd1306, 
 m5stack, 
-roupe
+loupe
 
 Description: https://github.com/lepp-chiba/TOLabelStamp/wiki
 
